@@ -1,6 +1,8 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 import Home from "../pages/Home";
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4800341716419272"
+     crossorigin="anonymous"></script>
 
 // Import Tools
 import AudioTools from "../pages/tools/AudioTools/AudioTools.jsx"; // Audio Tools
