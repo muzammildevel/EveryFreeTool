@@ -1,0 +1,70 @@
+.word-counter-wrapper {
+    background-color: #ffffff;
+    color: #000000;
+    font-family: 'Segoe UI', sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  
+  .word-counter-main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    flex-grow: 1;
+  }
+  
+  .word-counter-tool {
+    background-color: #f1f1f1;
+    border-radius: 10px;
+    padding: 30px;
+    width: 100%;
+    max-width: 600px;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .word-counter-title {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .word-counter-label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+  }
+  
+  .word-counter-textarea {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid grey;
+    border-radius: 5px;
+    font-size: 16px;
+    resize: vertical;
+  }
+  
+  .word-counter-results {
+    margin-top: 20px;
+    font-size: 16px;
+  }
+  
+  .word-counter-ad {
+    background-color: #e0e0e0;
+    color: #333;
+    text-align: center;
+    padding: 10px;
+    font-size: 14px;
+  }
+  
+  .word-counter-ad-top,
+  .word-counter-ad-bottom {
+    width: 100%;
+  }
+  
+  .word-counter-ad-left,
+  .word-counter-ad-right {
+    width: 120px;
+  }
+  
