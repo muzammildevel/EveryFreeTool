@@ -1,0 +1,89 @@
+.background-remover-container {
+    background-color: #ffffff;
+    color: #000000;
+    font-family: 'Segoe UI', sans-serif;
+    display: flex;
+    flex-wrap: wrap;
+    min-height: 100vh;
+    position: relative;
+  }
+  
+  .background-remover-ad {
+    background-color: #f1f1f1;
+    color: #333;
+    text-align: center;
+    font-size: 14px;
+    padding: 10px;
+  }
+  
+  .background-remover-ad-top,
+  .background-remover-ad-bottom {
+    width: 100%;
+  }
+  
+  .background-remover-ad-left,
+  .background-remover-ad-right {
+    width: 120px;
+    min-height: 100vh;
+  }
+  
+  .background-remover-content {
+    margin: auto;
+    max-width: 600px;
+    padding: 40px;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    z-index: 1;
+    flex: 1;
+  }
+  
+  .background-remover-title {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .background-remover-label {
+    display: block;
+    margin-top: 10px;
+    margin-bottom: 5px;
+  }
+  
+  .background-remover-input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #bbb;
+    border-radius: 5px;
+  }
+  
+  .background-remover-button {
+    background-color: #000000;
+    color: #ffffff;
+    padding: 10px 20px;
+    border: none;
+    margin-top: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .background-remover-button:hover {
+    background-color: #333333;
+  }
+  
+  .background-remover-error {
+    color: red;
+    margin-top: 10px;
+  }
+  
+  .background-remover-result {
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  .background-remover-preview {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+  }
+  

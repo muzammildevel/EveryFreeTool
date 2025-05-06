@@ -1,0 +1,102 @@
+.image-tools-page {
+    display: flex;
+    background-color: #f1f1f1;
+    color: #000;
+    min-height: 100vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    position: relative;
+  }
+  
+  .image-tools-content {
+    margin: 20px auto;
+    padding: 30px;
+    background-color: #ffffff;
+    max-width: 700px;
+    width: 100%;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+    border-radius: 12px;
+    text-align: center;
+  }
+  
+  .image-tools-title {
+    font-size: 2rem;
+    margin-bottom: 10px;
+    color: #000000;
+  }
+  
+  .image-tools-description {
+    font-size: 1rem;
+    margin-bottom: 20px;
+    color: #444444;
+  }
+  
+  .image-tools-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .image-tools-list li {
+    margin: 10px 0;
+  }
+  
+  .image-tools-list a {
+    text-decoration: none;
+    color: #000000;
+    font-weight: 500;
+    transition: color 0.3s ease, transform 0.3s ease;
+  }
+  
+  .image-tools-list a:hover {
+    color: #e12b38;
+    transform: translateX(5px);
+  }
+  
+  /* Ad Styling */
+  .image-tools-ad {
+    background-color: #ccc;
+    color: #333;
+    font-size: 0.9rem;
+    text-align: center;
+    padding: 10px;
+    margin: 5px;
+    border-radius: 6px;
+  }
+  
+  .image-tools-ad-top,
+  .image-tools-ad-bottom {
+    margin: 10px 0;
+  }
+  
+  .image-tools-ad-left,
+  .image-tools-ad-right {
+    width: 120px;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    position: fixed;
+    top: 100px;
+    bottom: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #dcdcdc;
+    border-radius: 8px;
+    padding: 10px;
+  }
+  
+  .image-tools-ad-left {
+    left: 10px;
+  }
+  
+  .image-tools-ad-right {
+    right: 10px;
+  }
+  
+  /* Responsive */
+  @media (max-width: 1024px) {
+    .image-tools-ad-left,
+    .image-tools-ad-right {
+      display: none;
+    }
+  }
+  
