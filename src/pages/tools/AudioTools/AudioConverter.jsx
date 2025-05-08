@@ -1,118 +1,121 @@
-import React, { useState } from "react";
-import axios from "axios"; // To make HTTP requests
-import "./AudioConverter.css";
+import React, { useState } from 'react';
+import './AudioConverter.css';
 
-const AudioConverter = () => {
-  const [audio, setAudio] = useState(null);
-  const [convertedAudio, setConvertedAudio] = useState(null);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
-  const [format, setFormat] = useState("mp3");
+function AudioConverter() {
+  const [files, setFiles] = useState([]);
+  const [progress, setProgress] = useState(0);
 
-  const handleAudioChange = (e) => {
-    const file = e.target.files[0];
-    if (file && file.type.startsWith("audio/")) {
-      setAudio(file);
-      setConvertedAudio(null); // Reset converted audio when a new file is selected
-      setError(""); // Clear any previous errors
-    } else {
-      setError("Please upload a valid audio file.");
-    }
+  const handleFileChange = (e) => {
+    setFiles([...e.target.files]);
+    setProgress(0);
   };
 
-  const convertAudio = async () => {
-    if (!audio) {
-      setError("Please upload an audio file to convert.");
-      return;
-    }
-
-    setLoading(true);
-    setError("");
-
-    const formData = new FormData();
-    formData.append("audio", audio);
-    formData.append("format", format);
-
-    try {
-      const response = await axios.post("http://localhost:3000/convert-audio", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-        responseType: "blob", // Get the file as a blob
-      });
-
-      // Create a download link for the converted audio file
-      const url = URL.createObjectURL(response.data);
-      setConvertedAudio(url);
-      setLoading(false);
-    } catch (err) {
-      setLoading(false);
-      setError("Error converting audio. Please try again.");
-    }
+  const handleConvert = () => {
+    if (files.length === 0) return;
+    setProgress(25);
+    setTimeout(() => setProgress(100), 1000); // Mock conversion
   };
 
   return (
-    <div className="audio-converter-page">
-      <div className="audio-converter-ad audio-converter-ad-left">Ad Left</div>
-      <div className="audio-converter-ad audio-converter-ad-right">Ad Right</div>
+    <div className="audio-converter-container">
+      <div className="ad-top">Top Ad Placeholder</div>
 
-      <div className="audio-converter-content">
-        <div className="audio-converter-ad audio-converter-ad-top">Ad Top</div>
+      <div className="layout-wrapper">
+        <div className="ad-left">Left Ad</div>
 
-        <h2 className="audio-converter-title">🎧 Audio Converter</h2>
-
-        <div className="audio-converter-input-group">
-          <label htmlFor="audio-upload" className="audio-converter-label">Upload Audio File:</label>
-          <input
-            id="audio-upload"
-            type="file"
-            accept="audio/*"
-            className="audio-converter-input"
-            onChange={handleAudioChange}
-          />
-        </div>
-
-        <div className="audio-converter-input-group">
-          <label htmlFor="audio-format" className="audio-converter-label">Choose Format:</label>
-          <select
-            id="audio-format"
-            className="audio-converter-select"
-            value={format}
-            onChange={(e) => setFormat(e.target.value)}
-          >
-            <option value="mp3">MP3</option>
-            <option value="wav">WAV</option>
-            <option value="flac">FLAC</option>
-          </select>
-        </div>
-
-        <button 
-          className="audio-converter-button"
-          onClick={convertAudio} 
-          disabled={loading}
-        >
-          {loading ? "Converting..." : "Convert Audio"}
-        </button>
-
-        {error && <div className="audio-converter-error">{error}</div>}
-
-        {convertedAudio && (
-          <div className="audio-converter-result">
-            <h3>Converted Audio:</h3>
-            <audio controls className="audio-converter-audio">
-              <source src={convertedAudio} type="audio/mpeg" />
-              Your browser does not support the audio element.
-            </audio>
-            <a href={convertedAudio} download={`converted-audio.${format}`}>
-              <button className="audio-converter-download-button">Download Converted Audio</button>
-            </a>
+        <div className="converter-tool">
+          <h1>Audio Converter Tool</h1>
+          <input type="file" accept="audio/*,video/*" multiple onChange={handleFileChange} />
+          
+          <div className="conversion-options">
+            <label>
+              Format
+              <select>
+                <option>MP3</option>
+                <option>WAV</option>
+                <option>FLAC</option>
+                <option>OGG</option>
+                <option>AAC</option>
+                <option>M4A</option>
+                <option>WMA</option>
+              </select>
+            </label>
+            <label>
+              Bitrate
+              <select>
+                <option>128kbps</option>
+                <option>192kbps</option>
+                <option>256kbps</option>
+                <option>320kbps</option>
+              </select>
+            </label>
+            <label>
+              Sample Rate
+              <select>
+                <option>44.1kHz</option>
+                <option>48kHz</option>
+              </select>
+            </label>
+            <label>
+              Channels
+              <select>
+                <option>Stereo</option>
+                <option>Mono</option>
+              </select>
+            </label>
           </div>
-        )}
 
-        <div className="audio-converter-ad audio-converter-ad-bottom">Ad Bottom</div>
+          <button onClick={handleConvert} disabled={files.length === 0}>Convert</button>
+
+          {progress > 0 && (
+            <div className="progress-bar">
+              <div style={{ width: `${progress}%` }}></div>
+            </div>
+          )}
+        </div>
+
+        <div className="ad-right">Right Ad</div>
       </div>
+
+      <div className="ad-bottom">Bottom Ad Placeholder</div>
+
+      <section className="seo-info">
+        <h2>Online Audio Converter</h2>
+        <p>A free online app that converts audio files for you. The app supports all formats, processes your files quickly, and does not require installation.</p>
+
+        <h3>Convert any format</h3>
+        <p>Our converter works with over 300 different file formats including video formats, converting them to mp3, wav, m4a, flac, ogg, amr, mp2, and m4r (for iPhone ringtones).</p>
+
+        <h3>Extract audio from a video file</h3>
+        <p>Our app allows you to extract an audio track from a video. It is useful when you want to save a particular song from a movie or a music video.</p>
+
+        <h3>Advanced settings</h3>
+        <p>You can configure the quality, bitrate, frequency, and number of channels, apply reverse playback or fade in, or even remove a voice from the audio track.</p>
+
+        <h3>It's safe</h3>
+        <p>Your files are automatically deleted from our servers a few hours after you are done working with them. Nobody has access to them except you.</p>
+
+        <h3>Batch conversion</h3>
+        <p>The app can convert multiple files simultaneously in a batch, saving them in a ZIP archive to speed up downloading.</p>
+
+        <h3>Tag support</h3>
+        <p>You can change the track’s name, artist, album, year and genre. Tags are supported for mp3, ogg, flac, wav.</p>
+
+        <h3>Works in a browser</h3>
+        <p>Now you can convert audio tracks right in your browser. It’s fast, secure, and free.</p>
+
+        <h3>Convert audio easily</h3>
+        <p>The app is easy to use: upload the original file, choose your desired format and quality, and download the output file to your computer.</p>
+
+        <h3>Help</h3>
+        <ul>
+          <li>Different types of audio formats explained</li>
+          <li>How to extract sound from a video?</li>
+          <li>Advanced mp3 converting settings explained</li>
+        </ul>
+      </section>
     </div>
   );
-};
+}
 
 export default AudioConverter;
