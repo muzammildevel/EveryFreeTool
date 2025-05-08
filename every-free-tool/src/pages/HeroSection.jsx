@@ -2,6 +2,9 @@ import React, { useEffect, useState } from 'react';
 import './HeroSection.css';
 import { Link } from 'react-router-dom';
 
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4800341716419272"
+     crossorigin="anonymous"></script>
+
 const HeroSection = () => {
   const [usersToday, setUsersToday] = useState(0);
   const [toolsUsed, setToolsUsed] = useState(0);

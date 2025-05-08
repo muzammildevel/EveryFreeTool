@@ -4,6 +4,9 @@ import { Helmet } from "react-helmet";
 import './Home.css';
 import HeroSection from "./HeroSection";
 
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4800341716419272"
+     crossorigin="anonymous"></script>
+
 function Home() {
   return (
     <>
