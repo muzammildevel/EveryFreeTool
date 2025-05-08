@@ -1,150 +1,189 @@
-.audio-converter-container {
+/* General Layout */
+.audio-converter {
+  font-family: 'Arial', sans-serif;
   background-color: #f1f1f1;
   color: black;
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  min-height: 100vh;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.layout-wrapper {
+.audio-converter-layout-wrapper {
   display: flex;
   flex-direction: row;
-  justify-content: center;
-  position: relative;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-.ad-top, .ad-bottom {
-  background: grey;
-  text-align: center;
-  padding: 12px;
-  color: white;
+.audio-converter-tool {
+  background-color: white;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  width: 60%;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.audio-converter-tool h1 {
+  font-size: 24px;
+  color: #3778c2;
+  margin-bottom: 10px;
+}
+
+.audio-converter-tool p {
+  font-size: 16px;
+  color: grey;
+}
+
+.audio-converter-tool label {
   font-size: 16px;
   font-weight: 600;
+  color: black;
+  margin-bottom: 10px;
 }
 
-.ad-left, .ad-right {
-  background: grey;
-  width: 120px;
-  padding: 10px;
-  color: white;
-  font-size: 14px;
-  text-align: center;
-}
-
-.converter-tool {
-  max-width: 800px;
-  flex: 1;
-  background-color: white;
-  padding: 30px;
-  margin: 20px 10px;
-  border-radius: 10px;
-  box-shadow: 0 0 15px rgba(0,0,0,0.1);
-}
-
-.converter-tool h1 {
-  font-size: 24px;
-  margin-bottom: 20px;
-  text-align: center;
-}
-
-input[type="file"] {
-  margin-bottom: 20px;
-  display: block;
-  width: 100%;
-}
-
-.conversion-options {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+.audio-converter-conversion-options {
+  display: flex;
+  flex-direction: column;
   gap: 15px;
-  margin-top: 10px;
 }
 
-.conversion-options label {
-  font-size: 15px;
-  color: #222;
-}
-
-select {
-  margin-top: 5px;
-  padding: 6px;
+.audio-converter-conversion-options input,
+.audio-converter-conversion-options select {
+  padding: 10px;
+  margin: 5px 0;
+  border: 1px solid grey;
   border-radius: 4px;
-  border: 1px solid #ccc;
-  font-size: 14px;
+}
+
+.audio-converter-progress-bar {
+  height: 8px;
+  background-color: grey;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.audio-converter-progress-bar div {
+  height: 100%;
+  background-color: #3778c2;
 }
 
 button {
-  margin-top: 25px;
-  padding: 12px 25px;
-  background: black;
+  background-color: #3778c2;
   color: white;
   border: none;
-  border-radius: 5px;
+  padding: 12px 20px;
+  font-size: 16px;
   cursor: pointer;
-  font-weight: bold;
+  border-radius: 5px;
+  margin-top: 15px;
 }
 
 button:disabled {
-  background: grey;
+  background-color: grey;
   cursor: not-allowed;
 }
 
-.progress-bar {
-  margin-top: 20px;
+button:hover:enabled {
+  background-color: #1f5e92;
+}
+
+/* Ad Placeholders */
+.audio-converter-ad-left,
+.audio-converter-ad-right,
+.audio-converter-ad-bottom {
+  background-color: grey;
+  height: 250px;
+  width: 300px;
+  border-radius: 8px;
+  margin: 10px;
+}
+
+.audio-converter-ad-left {
+  align-self: flex-start;
+}
+
+.audio-converter-ad-right {
+  align-self: flex-end;
+}
+
+.audio-converter-ad-bottom {
   width: 100%;
-  background: #ccc;
-  border-radius: 6px;
-  overflow: hidden;
-  height: 12px;
-}
-
-.progress-bar > div {
-  height: 100%;
-  background: #3778c2;
-  transition: width 0.3s ease-in-out;
-}
-
-.seo-info {
-  background: #ffffff;
-  padding: 30px 20px;
-  margin: 0 auto;
-  max-width: 960px;
-  border-top: 1px solid #ccc;
-}
-
-.seo-info h2, .seo-info h3 {
-  color: black;
   margin-top: 20px;
 }
 
-.seo-info p, .seo-info ul {
-  color: #333;
-  font-size: 15px;
-  line-height: 1.6;
+/* SEO Section */
+.audio-converter-seo-info {
+  background-color: white;
+  padding: 20px;
+  width: 100%;
+  margin-top: 20px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
 }
 
-.seo-info ul {
-  padding-left: 20px;
-  list-style: disc;
+.audio-converter-seo-info h2 {
+  font-size: 20px;
+  color: #3778c2;
+  margin-bottom: 15px;
 }
 
-@media (max-width: 1024px) {
-  .layout-wrapper {
+.audio-converter-seo-info h3 {
+  font-size: 18px;
+  color: black;
+  margin-top: 10px;
+}
+
+.audio-converter-seo-info p,
+.audio-converter-seo-info ul {
+  font-size: 16px;
+  color: grey;
+  margin-bottom: 15px;
+}
+
+.audio-converter-seo-info ul {
+  list-style-type: disc;
+  margin-left: 20px;
+}
+
+.audio-converter-seo-info li {
+  margin-bottom: 8px;
+}
+
+.audio-converter-seo-info a {
+  color: #3778c2;
+  text-decoration: none;
+}
+
+.audio-converter-seo-info a:hover {
+  text-decoration: underline;
+}
+
+/* Responsiveness */
+@media (max-width: 768px) {
+  .audio-converter-layout-wrapper {
     flex-direction: column;
     align-items: center;
   }
 
-  .ad-left, .ad-right {
-    display: none;
+  .audio-converter-tool {
+    width: 90%;
   }
 
-  .converter-tool {
-    margin: 20px;
+  .audio-converter-ad-left,
+  .audio-converter-ad-right {
     width: 100%;
+    margin: 10px 0;
   }
 
-  .conversion-options {
-    grid-template-columns: 1fr;
+  .audio-converter-ad-bottom {
+    width: 100%;
+    margin-top: 20px;
   }
 }
+  

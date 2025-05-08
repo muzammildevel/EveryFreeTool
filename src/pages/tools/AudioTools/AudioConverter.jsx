@@ -1,85 +1,153 @@
 import React, { useState } from 'react';
+import Slider from 'react-slider';
+import Select from 'react-select';
+import { FaVolumeUp, FaCog, FaFileAudio } from 'react-icons/fa';
 import './AudioConverter.css';
 
-function AudioConverter() {
-  const [files, setFiles] = useState([]);
+const AudioConverter = () => {
+  const [file, setFile] = useState(null);
   const [progress, setProgress] = useState(0);
+  const [isConverting, setIsConverting] = useState(false);
+  const [outputFile, setOutputFile] = useState(null);
 
-  const handleFileChange = (e) => {
-    setFiles([...e.target.files]);
-    setProgress(0);
+  const bitrateOptions = [
+    { value: '128kbps', label: '128kbps' },
+    { value: '192kbps', label: '192kbps' },
+    { value: '256kbps', label: '256kbps' },
+  ];
+
+  const sampleRateOptions = [
+    { value: '44.1kHz', label: '44.1kHz' },
+    { value: '48kHz', label: '48kHz' },
+  ];
+
+  const channelsOptions = [
+    { value: 'mono', label: 'Mono' },
+    { value: 'stereo', label: 'Stereo' },
+  ];
+
+  const handleFileUpload = (event) => {
+    setFile(event.target.files[0]);
   };
 
-  const handleConvert = () => {
-    if (files.length === 0) return;
-    setProgress(25);
-    setTimeout(() => setProgress(100), 1000); // Mock conversion
+  const handleConversion = () => {
+    setIsConverting(true);
+    setProgress(0);
+    let interval = setInterval(() => {
+      setProgress((prev) => {
+        if (prev >= 100) {
+          clearInterval(interval);
+          setOutputFile(URL.createObjectURL(file)); // Replace with actual conversion logic
+          return 100;
+        }
+        return prev + 10;
+      });
+    }, 500);
   };
 
   return (
-    <div className="audio-converter-container">
-      <div className="ad-top">Top Ad Placeholder</div>
+    <div className="audio-converter">
+      <div className="audio-converter-layout-wrapper">
+        {/* Left Ad */}
+        <div className="audio-converter-ad-left">Ad Left</div>
 
-      <div className="layout-wrapper">
-        <div className="ad-left">Left Ad</div>
+        {/* Main Tool Section */}
+        <div className="audio-converter-tool">
+          <h1>Audio Converter <FaFileAudio /></h1>
+          <p>Convert your audio files quickly and easily <FaCog /></p>
 
-        <div className="converter-tool">
-          <h1>Audio Converter Tool</h1>
-          <input type="file" accept="audio/*,video/*" multiple onChange={handleFileChange} />
-          
-          <div className="conversion-options">
+          {/* File Upload */}
+          <input
+            type="file"
+            onChange={handleFileUpload}
+            accept=".mp3, .wav, .flac, .ogg, .aac, .m4a, .wma"
+          />
+          {file && <p>{file.name}</p>}
+
+          {/* Conversion Settings */}
+          <div className="audio-converter-conversion-options">
             <label>
-              Format
-              <select>
-                <option>MP3</option>
-                <option>WAV</option>
-                <option>FLAC</option>
-                <option>OGG</option>
-                <option>AAC</option>
-                <option>M4A</option>
-                <option>WMA</option>
-              </select>
+              Bitrate <FaCog />
+              <Select options={bitrateOptions} />
             </label>
+
             <label>
-              Bitrate
-              <select>
-                <option>128kbps</option>
-                <option>192kbps</option>
-                <option>256kbps</option>
-                <option>320kbps</option>
-              </select>
+              Sample Rate <FaCog />
+              <Select options={sampleRateOptions} />
             </label>
+
             <label>
-              Sample Rate
-              <select>
-                <option>44.1kHz</option>
-                <option>48kHz</option>
-              </select>
+              Channels <FaCog />
+              <Select options={channelsOptions} />
             </label>
+
             <label>
-              Channels
-              <select>
-                <option>Stereo</option>
-                <option>Mono</option>
-              </select>
+              Volume <FaVolumeUp />
+              <Slider
+                min={0}
+                max={100}
+                step={1}
+                value={50}
+                onChange={(value) => console.log(value)}
+                renderTrack={(props, state) => (
+                  <div {...props} style={{ backgroundColor: 'grey' }}>
+                    <div
+                      style={{
+                        backgroundColor: '#3778c2',
+                        height: '100%',
+                        width: `${(state.valueNow / 100) * 100}%`,
+                      }}
+                    />
+                  </div>
+                )}
+                renderThumb={(props) => (
+                  <div {...props} style={{ backgroundColor: '#3778c2', height: 15, width: 15, borderRadius: '50%' }} />
+                )}
+              />
+            </label>
+
+            <label>
+              Trim (Start)
+              <input type="time" />
+            </label>
+
+            <label>
+              Trim (End)
+              <input type="time" />
             </label>
           </div>
 
-          <button onClick={handleConvert} disabled={files.length === 0}>Convert</button>
+          {/* Convert Button */}
+          <button onClick={handleConversion} disabled={isConverting || !file}>
+            {isConverting ? 'Converting...' : 'Convert'}
+          </button>
 
-          {progress > 0 && (
-            <div className="progress-bar">
-              <div style={{ width: `${progress}%` }}></div>
+          {/* Progress Bar */}
+          {isConverting && (
+            <div className="audio-converter-progress-bar">
+              <div style={{ width: `${progress}%` }} />
+            </div>
+          )}
+
+          {/* Output Download */}
+          {outputFile && (
+            <div>
+              <a href={outputFile} download>
+                Download Converted File
+              </a>
             </div>
           )}
         </div>
 
-        <div className="ad-right">Right Ad</div>
+        {/* Right Ad */}
+        <div className="audio-converter-ad-right">Ad Right</div>
       </div>
 
-      <div className="ad-bottom">Bottom Ad Placeholder</div>
+      {/* Bottom Ad */}
+      <div className="audio-converter-ad-bottom">Ad Bottom</div>
 
-      <section className="seo-info">
+      {/* SEO Content */}
+      <div className="audio-converter-seo-info">
         <h2>Online Audio Converter</h2>
         <p>A free online app that converts audio files for you. The app supports all formats, processes your files quickly, and does not require installation.</p>
 
@@ -99,7 +167,7 @@ function AudioConverter() {
         <p>The app can convert multiple files simultaneously in a batch, saving them in a ZIP archive to speed up downloading.</p>
 
         <h3>Tag support</h3>
-        <p>You can change the track’s name, artist, album, year and genre. Tags are supported for mp3, ogg, flac, wav.</p>
+        <p>You can change the track’s name, artist, album, year, and genre. Tags are supported for mp3, ogg, flac, wav.</p>
 
         <h3>Works in a browser</h3>
         <p>Now you can convert audio tracks right in your browser. It’s fast, secure, and free.</p>
@@ -113,9 +181,9 @@ function AudioConverter() {
           <li>How to extract sound from a video?</li>
           <li>Advanced mp3 converting settings explained</li>
         </ul>
-      </section>
+      </div>
     </div>
   );
-}
+};
 
 export default AudioConverter;
